@@ -1,0 +1,67 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 600px;
+    margin: auto;
+    padding: 50px;
+    background-color: #f6f6f6;
+}
+
+h1{
+    padding-left: 15px;
+    font-size: 22px;
+    color: black;
+    text-align: center;
+}
+ 
+pre{
+    font-size: 18px;
+    color: green;
+    margin-left: -120px;
+}
+
+ol,ul{
+    font-size: 18px;
+    list-style-type: none;
+    counter-reset: list;
+}
+ol li{
+    counter-increment: list;
+    margin-bottom: 10px;
+}
+ol li::after{
+    content: " " counter(list);
+}
+ol li::before{
+    margin-right: 5px;
+    content: counters(list, ". ", upper-roman) ". ";
+}
+
+li + ol, 
+li + ul{
+    padding-left: 50px;
+    counter-reset: nested;
+}
+li + ol  li, 
+li + ul li{
+    counter-increment: nested;
+}
+li + ol li::after, 
+li + ul li::after{
+    content: " "counter(list)"." counter(nested)"";
+}
+
+li + ol li::before{
+    content: counters(nested, ". ", lower-alpha)". ";
+}
+li + ul li::before{
+    font-size: 25px;
+    content: counters(nested, ". ", disc)" ";
+}
+li:nth-of-type(2) + ol li::before{
+    content: ""counter(nested)". ";
+}
